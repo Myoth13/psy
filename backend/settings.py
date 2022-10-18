@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'filer',
     'easy_thumbnails',
 
+
     # the default CKEditor - optional, but used in most projects
     'djangocms_text_ckeditor',
 
