@@ -220,3 +220,4 @@ MEDIA_ROOT = os.path.join('/data/media/')
 
 
 SITE_ID = 1
+DJANGO_SUPERUSER_PASSWORD = 'admin'
