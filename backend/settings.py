@@ -218,8 +218,4 @@ DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join('/data/media/')
 
-
 SITE_ID = 1
-DJANGO_SUPERUSER_PASSWORD = 'admin'
-DJANGO_SUPERUSER_USERNAME = 'admin'
-DJANGO_SUPERUSER_EMAIL = 'myoth13@gmail.com'
