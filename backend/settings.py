@@ -194,11 +194,8 @@ LANGUAGES = [
 ]
 
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -210,7 +207,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_collected')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR, 'backend/static',
+    BASE_DIR / 'backend/static',
 #    BASE_DIR, 'cmsapp/static',
 #    BASE_DIR, 'profile/static',
 ]
