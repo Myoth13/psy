@@ -81,6 +81,7 @@ INSTALLED_APPS = [
 
     # auth module
     'social_django',
+    'profile',
 ]
 
 MIDDLEWARE = [
