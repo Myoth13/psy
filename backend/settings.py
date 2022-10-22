@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'filer',
     'easy_thumbnails',
 
-
     # the default CKEditor - optional, but used in most projects
     'djangocms_text_ckeditor',
 
@@ -79,6 +78,9 @@ INSTALLED_APPS = [
     'djangocms_frontend.contrib.image',
     'djangocms_frontend.contrib.tabs',
     'djangocms_frontend.contrib.utilities',
+
+    # auth module
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +120,9 @@ TEMPLATES = [
 
                 'cms.context_processors.cms_settings',
                 'sekizai.context_processors.sekizai',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
 
             ],
         },
@@ -219,3 +224,17 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join('/data/media/')
 
 SITE_ID = 1
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.yahoo.YahooOpenId',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714074814037-8bnp5oqt4hktqg0fe86hqih16mr7pp0k.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

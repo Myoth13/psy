@@ -21,6 +21,7 @@
     {% block page_head %}{% endblock %}
     </head>
     <body {% block body_attrs %}{% endblock %}>
+    <a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
 {% endspaceless %}{% cms_toolbar %}{% spaceless %}
     {% block navbar %}{% endblock %}
     {% block content %}
