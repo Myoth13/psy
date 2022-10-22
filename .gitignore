@@ -8,6 +8,7 @@ db.sqlite3
 
 # Divio
 .divio
+.idea
 /data.tar.gz
 /data
 
