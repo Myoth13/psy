@@ -113,7 +113,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [BASE_DIR/'cmsapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,13 +148,13 @@ THUMBNAIL_PROCESSORS = (
 
 CMS_TEMPLATES = [
     # a minimal template to get started with
-    ('minimal.html', 'Minimal template'),
-
-    # optional templates that extend base.html, to be used with Bootstrap 5
-    ('bootstrap5.html', 'Bootstrap 5 Demo'),
+    ('dynamic.html', 'dynamic page'),
+    ('index.html', 'home page'),
+    ('about.html', 'about'),
+    ('contact.html', 'contact'),
 
     # serving static files with whitenoise demo
-    ('whitenoise-static-files-demo.html', 'Static File Demo'),
+#    ('whitenoise-static-files-demo.html', 'Static File Demo'),
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'

@@ -29,3 +29,13 @@ def create_post(request):
             return redirect('index')
     context = {'form': form}
     return render(request, 'create_post.html', context)
+
+
+def about(request):
+    context = {}
+    return render(request, 'about.html', context=context)
+
+
+def contact(request):
+    context = {}
+    return render(request, 'contact.html', context=context)
