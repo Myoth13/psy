@@ -37,7 +37,7 @@ docker compose up -d
 ## Contributing to the project
 
 1) Before you start to do anything pull fresh dev branch to avoid painful mergings later! 
-2) Make a new branch for your feature, switch to it, create new app, register it in settings
+2) Make a new branch for your app/feature, switch to it, create new app, register it in settings
 3) Merge settings.py to dev branch and push for others (dev branch)
 4) When your app is ready and tested merge it with dev branch and push alongside with db (divio app push db)
 5) celebrate =) 
@@ -58,10 +58,24 @@ See the django-whitenoise settings in settings.py and the `quickstart/templates/
 
 ## Contribution
 
+Please follow strictly PIP convention!
+Please name your class distinctive and informative ! 
 
+Bad example - there are tons of different things which have category in the project: 
+```python
+class Category(models.Model):
+    ...
+```
+
+OK example
+```python
+class PostCategory(models.Model):
+    ...
+```
 
 ## Deployment
 
+contact @Myothmyoth
 
 #### Env variables
 - to deploy this project in testing mode (recommended) set the environment variable `DEBUG` to `True` in your hosting environment. 
