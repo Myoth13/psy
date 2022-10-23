@@ -17,5 +17,7 @@ RUN pip install social-auth-app-django
 WORKDIR /app
 COPY . /app
 RUN pip install -r requirements.txt
+RUN pip install django-crispy-forms
+RUN pip install crispy-bootstrap5
 RUN python manage.py collectstatic --noinput
 CMD uwsgi --http=0.0.0.0:80 --module=backend.wsgi
