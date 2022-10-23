@@ -1,6 +1,6 @@
 ![Python application](https://github.com/django-cms/django-cms-quickstart/workflows/Python%20application/badge.svg?branch=main)
 
-# django CMS quickstart
+# django CMS
 
 A Dockerised django CMS project, ready to deploy on [Divio](https://www.divio.com/) or another Docker-based cloud platform, and run locally in Docker on your own machine.
 
@@ -18,28 +18,29 @@ You need to have docker installed on your system to run this project.
 ## Try it
 
 ```bash
-git clone git@github.com:django-cms/django-cms-quickstart.git
-cd django-cms-quickstart
+git clone https://github.com/Myoth13/psy.git
+cd psy
+git branch dev origin/dev
+git checkout dev
+```
+Now you have a source code, and you'll need to use divio app:
+https://docs.divio.com/en/latest/how-to/local-cli/
+
+Configure it to communicate with dev environment
+
+```bash
 docker compose build web
-docker compose up -d database_default
-docker compose run web python manage.py migrate
-docker compose run web python manage.py createsuperuser
+divio app pull db
 docker compose up -d
 ```
 
-Then open http://django-cms-quickstart.127.0.0.1.nip.io:8000 (or just http://127.0.0.1:8000) in your browser.
+## Contributing to the project
 
-Note: Since Compose V2, `docker-compose` is now included inside docker. For more information, checkout the [Compose V2](https://docs.docker.com/compose/cli-command/) Documentation.
-
-## Customising the project
-
-This project is ready-to-go without making any changes at all, but also gives you some options.
-
-As-is, it will include a number of useful django CMS plugins and Bootstrap 4 for the frontend. You don't have to use
-these; they're optional. If you don't want to use them, read through the `settings.py` and `requirements.txt` files to
-see sections that can be removed - in each case, the section is noted with a comment containing the word 'optional'.
-
-Options are also available for using Postgres/MySQL, uWSGI/Gunicorn/Guvicorn, etc.
+1) Before you start to do anything pull fresh dev branch to avoid painful mergings later! 
+2) Make a new branch for your feature, switch to it, create new app, register it in settings
+3) Merge settings.py to dev branch and push for others (dev branch)
+4) When your app is ready and tested merge it with dev branch and push alongside with db (divio app push db)
+5) celebrate =) 
 
 #### Updating requirements
 
@@ -57,12 +58,10 @@ See the django-whitenoise settings in settings.py and the `quickstart/templates/
 
 ## Contribution
 
-Here is the official django CMS repository: [https://github.com/django-cms/django-cms-quickstart/](https://github.com/django-cms/django-cms-quickstart/).
 
 
 ## Deployment
 
-Note that this is just a demo project to get you started. If you want a full production ready site with all the bells and whistles we recommend you have a look at https://github.com/django-cms/djangocms-template instead.
 
 #### Env variables
 - to deploy this project in testing mode (recommended) set the environment variable `DEBUG` to `True` in your hosting environment. 
