@@ -222,7 +222,9 @@ DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
 # only required for local file storage and serving, in development
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join('/data/media/')
+
 AWS_QUERYSTRING_AUTH = False
+AWS_S3_SECURE_URLS = False
 
 SITE_ID = 1
 
