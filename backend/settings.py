@@ -11,7 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '<a string of random characters>')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG') == "True"
+#DEBUG = os.environ.get('DJANGO_DEBUG') == "True"
+DEBUG=True
 
 DIVIO_DOMAIN = os.environ.get('DOMAIN', '')
 DIVIO_DOMAIN_ALIASES = [
@@ -25,7 +26,7 @@ DIVIO_DOMAIN_REDIRECTS = [
     if d.strip()
 ]
 
-ALLOWED_HOSTS = [DIVIO_DOMAIN] + DIVIO_DOMAIN_ALIASES + DIVIO_DOMAIN_REDIRECTS
+#ALLOWED_HOSTS = [DIVIO_DOMAIN] + DIVIO_DOMAIN_ALIASES + DIVIO_DOMAIN_REDIRECTS
 
 # Redirect to HTTPS by default, unless explicitly disabled
 SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT') != "False"
