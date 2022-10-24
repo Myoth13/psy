@@ -115,7 +115,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'cmsapp/templates'],
+        'DIRS': [BASE_DIR/'backend/templates', BASE_DIR/'cmsapp/templates', BASE_DIR/'profile/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,7 +154,7 @@ CMS_TEMPLATES = [
     ('index.html', 'home page'),
     ('about.html', 'about'),
     ('contact.html', 'contact'),
-
+    ('index.html', 'index'),
     # serving static files with whitenoise demo
 #    ('whitenoise-static-files-demo.html', 'Static File Demo'),
 ]
@@ -262,3 +262,5 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+LOGIN_REDIRECT_URL = '/profile-main'

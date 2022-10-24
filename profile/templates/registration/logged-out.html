@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% load cms_tags menu_tags %}
+
+{% block content %}
+  <p>Logged out!</p>
+  <a href="{% url 'login'%}">Click here to login again.</a>
+{% endblock %}

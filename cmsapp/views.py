@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import Post
 from .forms import PostForm
 from django.utils.text import slugify
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -25,6 +25,7 @@ def blogpost(request, slug):
     return render(request, 'blog_post.html', context=context)
 
 
+@login_required
 def create_post(request):
     form = PostForm
     if request.method == 'POST':
@@ -39,6 +40,7 @@ def create_post(request):
     return render(request, 'create_post.html', context)
 
 
+@login_required
 def update_post(request, slug):
     post = Post.objects.get(slug=slug)
     form = PostForm(instance=post)
@@ -52,6 +54,7 @@ def update_post(request, slug):
     return render(request, 'create_post.html', context)
 
 
+@login_required
 def delete_post(request, slug):
     post = Post.objects.get(slug=slug)
     form = PostForm(instance=post)
@@ -61,6 +64,7 @@ def delete_post(request, slug):
         return redirect('index')
     context = {'form': form}
     return render(request, 'delete_post.html', context)
+
 
 def about(request):
     context = {}

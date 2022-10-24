@@ -8,6 +8,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
+   {% if user.is_authenticated %}
+     <li class="nav-item">User: {{ user.get_username }}</li>
+     <li class="nav-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+   {% else %}
+     <li class="nav-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+   {% endif %}
+
                            {% for child in children %}
                             <li class="nav-item text-center {% if child.ancestor %}ancestor{% endif %}{% if child.children %} dropdown{% endif %}">
                                 {% if child.children %}<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="{{ child.get_absolute_url }}" id="menu-{{ child.id|safe }}">{{ child.get_menu_title }}</a>
@@ -24,7 +31,9 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                                     <li><a class="dropdown-item" href="{% url 'bloghome' %}">Blog Home</a></li>
+                                    {% if user.is_authenticated %}
                                     <li><a class="dropdown-item" href="{% url 'create_post' %}">Create Article</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
 

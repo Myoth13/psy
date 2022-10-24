@@ -1,4 +1,4 @@
-{% extends 'base_cmsapp.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
             <!-- Page Content-->
@@ -10,10 +10,9 @@
 
                         <div class="col-lg-2">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
-                                <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                                 <div class="ms-3">
-                                    <div class="fw-bold">Valerie Luna</div>
-                                    <div class="text-muted">News, Business</div>
+                                    <img class="img-fluid rounded-circle" src="{{post.author.photo.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px" />
+                                    <div class="fw-bold">{{post.author.name}}</div>
                                     <div class=""><a href="{% url 'update_post' post.slug %}"><button class="btn btn-primary">Update</button></a></div>
                                     <div class=""><a href="{% url 'delete_post' post.slug %}"><button class="btn btn-danger">Delete</button></a></div>
                                 </div>
