@@ -26,7 +26,7 @@
     <body class="d-flex flex-column h-100" {% block body_attrs %}{% endblock %}>
 
     {% cms_toolbar %}
-    {% block menubar %}{% show_menu 0 100 0 100 'menu/menu.html' %}{% endblock %}
+    {% show_menu 0 100 0 100 'menu/menu.html' %}
 
 {% for message in messages %}
 <div class="container-fluid p-0">
