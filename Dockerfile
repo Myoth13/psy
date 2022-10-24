@@ -8,7 +8,7 @@ RUN apt-get install -y build-essential
 # Get Rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-#biuld crypto
+#biuld crypto (should be ehough to add to requirements.txt, but doesn't work, so I double every package here)
 RUN pip install --upgrade pippip install --upgrade pip
 RUN pip install cryptography
 RUN pip install social-auth-app-django

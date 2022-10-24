@@ -13,8 +13,10 @@
                                 <div class="ms-3">
                                     <img class="img-fluid rounded-circle" src="{{post.author.photo.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px" />
                                     <div class="fw-bold">{{post.author.name}}</div>
+                                    {% if user.is_authenticated and request.user == post.author.user %}
                                     <div class=""><a href="{% url 'update_post' post.slug %}"><button class="btn btn-primary">Update</button></a></div>
                                     <div class=""><a href="{% url 'delete_post' post.slug %}"><button class="btn btn-danger">Delete</button></a></div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

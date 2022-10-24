@@ -33,7 +33,6 @@ SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT') != "False"
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -96,12 +95,10 @@ INSTALLED_APPS = [
     'social_django',
     'profile',
 
+    # forms plugin
     'crispy_forms',
     "crispy_bootstrap5",
 ]
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -201,7 +198,6 @@ if not DEBUG:
         },
     ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -216,14 +212,12 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_collected')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 # Media files
 # DEFAULT_FILE_STORAGE is configured using DEFAULT_STORAGE_DSN
@@ -247,12 +241,11 @@ DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join('/data/media/')
 
+# settings for production
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = False
 
 SITE_ID = 1
-
-SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',
@@ -262,6 +255,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714074814037-8bnp5oqt4hktqg0fe86hqih16mr7pp0k.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
@@ -274,3 +268,7 @@ MESSAGE_TAGS = {
  }
 
 LOGIN_REDIRECT_URL = '/profile-main'
+LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
