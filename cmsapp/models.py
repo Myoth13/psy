@@ -1,11 +1,12 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 import uuid
 
 
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=500)
-    body = models.TextField()
+    body = RichTextField()
     post_id = models.UUIDField(default=uuid.uuid4,primary_key=True,unique=True,editable=False)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

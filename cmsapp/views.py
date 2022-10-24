@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Post
 from .forms import PostForm
 from django.utils.text import slugify
@@ -9,6 +10,12 @@ def index(request):
     posts = Post.objects.all()
     context = {'posts': posts}
     return render(request, 'index.html', context=context)
+
+
+def bloghome(request):
+    posts = Post.objects.all()
+    context = {'posts': posts}
+    return render(request, 'blog_home.html', context=context)
 
 
 def blogpost(request, slug):
@@ -26,10 +33,34 @@ def create_post(request):
             post = form.save(commit=False)
             post.slug = slugify(post.title)
             post.save()
+            messages.info(request, 'Article was created successfully')
             return redirect('index')
     context = {'form': form}
     return render(request, 'create_post.html', context)
 
+
+def update_post(request, slug):
+    post = Post.objects.get(slug=slug)
+    form = PostForm(instance=post)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Article was updated successfully')
+            return redirect('blogpost', slug=post.slug)
+    context = {'form': form}
+    return render(request, 'create_post.html', context)
+
+
+def delete_post(request, slug):
+    post = Post.objects.get(slug=slug)
+    form = PostForm(instance=post)
+    if request.method == 'POST':
+        post.delete()
+        messages.info(request, 'Article was deleted successfully')
+        return redirect('index')
+    context = {'form': form}
+    return render(request, 'delete_post.html', context)
 
 def about(request):
     context = {}

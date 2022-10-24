@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from django_storage_url import dsn_configured_storage_class
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 
     # the default CKEditor - optional, but used in most projects
     'djangocms_text_ckeditor',
+    'ckeditor',
 
     # some content plugins - optional, but used in most projects
     'djangocms_file',
@@ -252,3 +254,11 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714074814037-8bnp5oqt4hktqg0fe86hqih16mr7pp0k.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }

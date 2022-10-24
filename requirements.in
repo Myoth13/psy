@@ -36,6 +36,7 @@ django-crispy-forms
 crispy-bootstrap5
 cryptography
 social-auth-app-django
+django-ckeditor
 
 easy-thumbnails
 # optional django CMS Frontend modules

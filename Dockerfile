@@ -19,5 +19,6 @@ COPY . /app
 RUN pip install -r requirements.txt
 RUN pip install django-crispy-forms
 RUN pip install crispy-bootstrap5
+RUN pip install django-ckeditor
 RUN python manage.py collectstatic --noinput
 CMD uwsgi --http=0.0.0.0:80 --module=backend.wsgi
