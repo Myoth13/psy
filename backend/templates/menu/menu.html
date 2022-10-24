@@ -1,4 +1,4 @@
-{% load cms_tags menu_tags sekizai_tags static i18n %}
+{% load cms_tags menu_tags sekizai_tags i18n %}
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -8,12 +8,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-   {% if user.is_authenticated %}
-     <li class="nav-item">User: {{ user.get_username }}</li>
-     <li class="nav-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-   {% else %}
-     <li class="nav-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-   {% endif %}
+                           {% show_menu from_level to_level extra_inactive extra_active "menu/login_form.html" "" "" child %}
 
                            {% for child in children %}
                             <li class="nav-item text-center {% if child.ancestor %}ancestor{% endif %}{% if child.children %} dropdown{% endif %}">
@@ -43,3 +38,4 @@
             </nav>
         </main>
 <a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
+
