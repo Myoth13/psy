@@ -17,5 +17,7 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 
+
+
 # the new django admin sidebar is bad UX in django CMS custom admin views.
 admin.site.enable_nav_sidebar = False
