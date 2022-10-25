@@ -1,4 +1,5 @@
 <!DOCTYPE html>{% load cms_tags menu_tags sekizai_tags static i18n %}
+
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8" />
@@ -31,8 +32,22 @@
     <body class="d-flex flex-column h-100">
 
         {% cms_toolbar %}
-        <!-- doesn't work in production -->
-        {% show_menu 0 100 0 100 'menu/menu.html' %}
+        <!-- doesn't work in production !!!!  -->
+        {% load menu_tags %}
+        {% block navbar %}
+            <nav class="navbar {% block navbar_options %}navbar-expand-lg navbar-dark bg-dark{% endblock %}">
+                <div class="container">
+                    <a class="navbar-brand" href="/">{% block brand %}{% endblock %}</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">{% block menubar %}{% show_menu 0 100 0 100 'menu/menu.html' %}{% endblock %}</ul>
+                        {% block searchbar %}{% endblock %}
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
 
         {% for message in messages %}
         <div class="container-fluid p-0">

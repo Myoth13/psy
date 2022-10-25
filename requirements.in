@@ -2,15 +2,15 @@
 # pip-compile requirements.in >> requirements.txt
 
 
-django==3.2
-dj-database-url==0.5.0
-django-storage-url==0.5.0
-whitenoise==5.2.0
-boto3==1.14.49
+django>=3.2
+dj-database-url>=0.5.0
+django-storage-url>=0.5.0
+whitenoise>=5.2.0
+boto3>=1.14.49
 
-psycopg2==2.8.5
+psycopg2>=2.8.5
 
-uwsgi==2.0.19.1
+uwsgi>=2.0.19.1
 
 # key requirements for django CMS
 django-cms<4
@@ -37,12 +37,15 @@ crispy-bootstrap5
 cryptography
 social-auth-app-django
 django-ckeditor
+reportlab
+svglib
+
 
 easy-thumbnails
 # optional django CMS Frontend modules
 djangocms-frontend
 
 # Django Filer - optional, but used in most projects (alpha) - already implicitly installed through djangocms-file
-# https://github.com/django-cms/django-filer/archive/refs/tags/2.1.1.zip#egg=django-filer
+https://github.com/django-cms/django-filer/archive/refs/tags/2.1.1.zip#egg=django-filer
 
 pip-tools  # needed for compilation of this file into requirements.txt, see start of file

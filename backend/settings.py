@@ -11,8 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '<a string of random characters>')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.environ.get('DJANGO_DEBUG') == "True"
-DEBUG=True
+DEBUG = os.environ.get('DJANGO_DEBUG') == "True"
 
 DIVIO_DOMAIN = os.environ.get('DOMAIN', '')
 DIVIO_DOMAIN_ALIASES = [
@@ -36,12 +35,18 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Application definition
 
 INSTALLED_APPS = [
+    # key django CMS modules
+    'cms',
+    'menus',
+    'treebeard',
+    'sekizai',
+
+    # my apps
     'backend',
     'cmsapp',
 
     # optional, but used in most projects
     'djangocms_admin_style',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,12 +55,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',  # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
-    # key django CMS modules
-    'cms',
-    'menus',
-    'treebeard',
-    'sekizai',
 
     # Django Filer - optional, but used in most projects
     'filer',
@@ -156,7 +155,6 @@ THUMBNAIL_PROCESSORS = (
 
 
 CMS_TEMPLATES = [
-    # a minimal template to get started with
     ('dynamic.html', 'dynamic page'),
     ('index.html', 'home page'),
     ('about.html', 'about'),
@@ -232,7 +230,7 @@ DefaultStorageClass = dsn_configured_storage_class('DEFAULT_STORAGE_DSN')
 DEFAULT_STORAGE_DSN = os.environ.get('DEFAULT_STORAGE_DSN')
 
 # dsn_configured_storage_class() requires the name of the setting
-DefaultStorageClass = dsn_configured_storage_class('DEFAULT_STORAGE_DSN')
+#DefaultStorageClass = dsn_configured_storage_class('DEFAULT_STORAGE_DSN')
 
 # Django's DEFAULT_FILE_STORAGE requires the class name
 DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
@@ -240,10 +238,6 @@ DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
 # only required for local file storage and serving, in development
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join('/data/media/')
-
-# settings for production
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_SECURE_URLS = False
 
 SITE_ID = 1
 
@@ -272,3 +266,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# settings for production
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_SECURE_URLS = False
+
