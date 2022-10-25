@@ -1,10 +1,15 @@
 {% load cms_tags menu_tags sekizai_tags static i18n %}
 
       {% if user.is_authenticated %}
-      <ul class="nav navbar-nav navbar-right">
-         <li class="nav-item text-center"><a class="nav-link" href="{% url 'profile_main' %}">User: {{ user.get_username }}</a></li>
-         <li class="nav-item text-center"><a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-      </ul>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.get_username }}</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="{% url 'profile_main' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                </ul>
+                            </li>
+
       {% else %}
       <ul class="nav navbar-nav navbar-right">
 		  <li class="nav-item text-center"><a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>

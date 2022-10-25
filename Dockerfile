@@ -10,17 +10,12 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 WORKDIR /app
 COPY . /app
-#biuld crypto (should be ehough to add to requirements.txt, but doesn't work, so I double every package here)
+#biuld everything
 RUN pip install --upgrade pippip install --upgrade pip
 RUN pip install pip-tools
 RUN pip-compile requirements.in > requirements.txt
 RUN pip install -r requirements.txt
-#RUN pip install cryptography
-#RUN pip install social-auth-app-django
 ####
 
-#RUN pip install django-crispy-forms
-#RUN pip install crispy-bootstrap5
-#RUN pip install django-ckeditor
 RUN python manage.py collectstatic --noinput
 CMD uwsgi --http=0.0.0.0:80 --module=backend.wsgi
