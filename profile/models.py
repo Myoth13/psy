@@ -16,7 +16,7 @@ def create_favorites(sender, instance, created, **kwargs):
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
 #    email = models.EmailField
     occupation = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='profile/img', blank=True, null=True)
