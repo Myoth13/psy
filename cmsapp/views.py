@@ -5,6 +5,7 @@ from .forms import PostForm
 from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
 from profile.models import UserProfile
+from django.contrib.auth.models import User, Group
 
 
 # Create your views here.
@@ -91,7 +92,8 @@ def delete_post(request, slug):
 
 
 def about(request):
-    context = {}
+    users = User.objects.filter(groups__name='Admins')
+    context = {'users': users}
     return render(request, 'about.html', context=context)
 
 
