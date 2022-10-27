@@ -35,13 +35,20 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Application definition
 
 INSTALLED_APPS = [
+
+    # should be the first one
+
+
     # key django CMS modules
+    'profile',
     'cms',
+
     'menus',
     'treebeard',
     'sekizai',
 
     # my apps
+
     'backend',
     'cmsapp',
 
@@ -92,12 +99,14 @@ INSTALLED_APPS = [
 
     # auth module
     'social_django',
-    'profile',
+
 
     # forms plugin
     'crispy_forms',
     "crispy_bootstrap5",
 ]
+
+#AUTH_USER_MODEL = 'profile.MyUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -264,4 +273,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # settings for production
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'psy.django.cms@gmail.com'
+EMAIL_HOST_PASSWORD = 'wtbqibaemilqfecz'
+
 

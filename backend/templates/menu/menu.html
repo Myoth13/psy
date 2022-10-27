@@ -26,7 +26,7 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                                     <li><a class="dropdown-item" href="{% url 'bloghome' %}">Blog Home</a></li>
-                                    {% if user.is_authenticated %}
+                                    {% if user.is_authenticated and perms.post.create_post %}
                                     <li><a class="dropdown-item" href="{% url 'create_post' %}">Create Article</a></li>
                                     {% endif %}
                                 </ul>

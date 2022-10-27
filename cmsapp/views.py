@@ -29,35 +29,19 @@ def blogpost(request, slug):
 
 @login_required
 def create_post(request):
-    form = PostForm
-    user_id = request.user
-    user_profile = UserProfile.objects.get(user_id=user_id)
-    if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.slug = slugify(post.title)
-            post.author = user_profile
-            post.save()
-            messages.info(request, 'Article was created successfully')
-            return redirect('index')
-    context = {'form': form}
-    return render(request, 'create_post.html', context)
-
-
-@login_required
-def update_post(request, slug):
-    user_id = request.user
-    user_profile = UserProfile.objects.get(user_id=user_id)
-    post = Post.objects.get(slug=slug)
-    if post.author == user_profile:
-        form = PostForm(instance=post)
+    if request.user.has_perm('post.create_post'):
+        form = PostForm
+        user_id = request.user
+        user_profile = UserProfile.objects.get(user_id=user_id)
         if request.method == 'POST':
-            form = PostForm(request.POST, request.FILES, instance=post)
+            form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
-                messages.info(request, 'Article was updated successfully')
-                return redirect('blogpost', slug=post.slug)
+                post = form.save(commit=False)
+                post.slug = slugify(post.title)
+                post.author = user_profile
+                post.save()
+                messages.info(request, 'Article was created successfully')
+                return redirect('index')
         context = {'form': form}
         return render(request, 'create_post.html', context)
     else:
@@ -65,18 +49,43 @@ def update_post(request, slug):
 
 
 @login_required
-def delete_post(request, slug):
-    user_id = request.user
-    user_profile = UserProfile.objects.get(user_id=user_id)
-    post = Post.objects.get(slug=slug)
-    if post.author == user_profile:
-        form = PostForm(instance=post)
-        if request.method == 'POST':
-            post.delete()
-            messages.info(request, 'Article was deleted successfully')
+def update_post(request, slug):
+    if request.user.has_perm('post.create_post'):
+        user_id = request.user
+        user_profile = UserProfile.objects.get(user_id=user_id)
+        post = Post.objects.get(slug=slug)
+        if post.author == user_profile:
+            form = PostForm(instance=post)
+            if request.method == 'POST':
+                form = PostForm(request.POST, request.FILES, instance=post)
+                if form.is_valid():
+                    form.save()
+                    messages.info(request, 'Article was updated successfully')
+                    return redirect('blogpost', slug=post.slug)
+            context = {'form': form}
+            return render(request, 'create_post.html', context)
+        else:
             return redirect('index')
-        context = {'form': form}
-        return render(request, 'delete_post.html', context)
+    else:
+        return redirect('index')
+
+
+@login_required
+def delete_post(request, slug):
+    if request.user.has_perm('post.delete_post'):
+        user_id = request.user
+        user_profile = UserProfile.objects.get(user_id=user_id)
+        post = Post.objects.get(slug=slug)
+        if post.author == user_profile:
+            form = PostForm(instance=post)
+            if request.method == 'POST':
+                post.delete()
+                messages.info(request, 'Article was deleted successfully')
+                return redirect('index')
+            context = {'form': form}
+            return render(request, 'delete_post.html', context)
+        else:
+            return redirect('index')
     else:
         return redirect('index')
 

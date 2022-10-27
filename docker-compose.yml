@@ -13,6 +13,7 @@ services:
       - "./data:/data:rw"
     # the default command to run whenever the container is launched
     command: python manage.py runserver 0.0.0.0:80
+    #command: gunicorn uwsgi --http=0.0.0.0:80 --module=backend.wsgi --reload
     # the URL 'postgres' or 'mysql' will point to the application's db service
     networks:
       - djangocmsnet

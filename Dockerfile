@@ -18,4 +18,5 @@ RUN pip install -r requirements.txt
 ####
 
 RUN python manage.py collectstatic --noinput
+RUN pip install gunicorn
 CMD uwsgi --http=0.0.0.0:80 --module=backend.wsgi
