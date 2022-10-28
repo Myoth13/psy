@@ -32,7 +32,6 @@
     <body class="d-flex flex-column h-100">
 
         {% cms_toolbar %}
-        <!-- doesn't work in production !!!!  -->
         {% load menu_tags %}
         {% block navbar %}
             <nav class="navbar {% block navbar_options %}navbar-expand-lg navbar-dark bg-dark{% endblock %}">
@@ -53,8 +52,7 @@
         <div class="container-fluid p-0">
           <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert" >
               <div>{{ message }}</div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         </div>
         {% endfor %}
@@ -67,13 +65,13 @@
         <footer class="bg-dark py-4 mt-auto">
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Psy 2022</div></div>
                     <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
+                        <a class="link-light small" href="#!">{% trans 'Privacy' %}</a>
                         <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
+                        <a class="link-light small" href="#!">{% trans 'Terms' %}</a>
                         <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="{% url 'contact' %}">Contact</a>
+                        <a class="link-light small" href="{% url 'contact' %}">{% trans Contact %}</a>
                     </div>
                 </div>
             </div>

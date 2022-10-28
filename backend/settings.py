@@ -3,6 +3,7 @@ import os
 import dj_database_url
 from django_storage_url import dsn_configured_storage_class
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,10 +38,9 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 INSTALLED_APPS = [
 
     # should be the first one
-
+    'profile',
 
     # key django CMS modules
-    'profile',
     'cms',
 
     'menus',
@@ -99,7 +99,6 @@ INSTALLED_APPS = [
 
     # auth module
     'social_django',
-
 
     # forms plugin
     'crispy_forms',
@@ -208,10 +207,12 @@ if not DEBUG:
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
-    ('en', 'English'),
+    ('ru', _('Russian')),
+    ('uk', _('Ukrainian')),
+    ('en', _('English')),
 ]
 
 TIME_ZONE = 'UTC'
