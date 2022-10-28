@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', include('django.contrib.auth.urls')),
     re_path('', include('social_django.urls', namespace='social')),
+    path(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
 urlpatterns += i18n_patterns(
