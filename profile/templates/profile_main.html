@@ -27,10 +27,17 @@
             {% endif %}
             <h5 class="my-3">{{profile.name}}</h5>
             <p class="text-muted mb-1">{{profile.occupation}}</p>
-            <a href="{% url 'profile_update' %}">Update</a>
-            <a href="{% url 'profile_delete' %}">Delete</a>
+            <p>
+              <a href="{% url 'profile_update' %}">Update</a>
+              <a href="{% url 'profile_delete' %}">Delete</a>
+            </p>
+            <p>
             <a href="{% url 'account_email' %}">Change email</a>
             <a href="{% url 'account_change_password' %}">Change password</a>
+            </p>
+            <p>
+              <a href="{% url 'socialaccount_connections' %}">Connect social</a></li>
+            </p>
           </div>
         </div>
       </div>

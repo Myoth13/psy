@@ -96,12 +96,13 @@ INSTALLED_APPS = [
     'djangocms_frontend.contrib.utilities',
 
     # auth module
-    'social_django',
+    #'social_django',
 
     # 3rd party
     'allauth',  # new
     'allauth.account',  # new
     'allauth.socialaccount',  # new
+    'allauth.socialaccount.providers.google',
 
     # forms plugin
     'crispy_forms',
@@ -248,18 +249,31 @@ DEFAULT_FILE_STORAGE = 'backend.settings.DefaultStorageClass'
 SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
-    'social_core.backends.twitter.TwitterOAuth',
+    #    'social_core.backends.open_id.OpenIdAuth',
+    #    'social_core.backends.google.GoogleOAuth2',
+    #    'social_core.backends.google.GoogleOAuth',
+    #    'social_core.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
     # `allauth` specific authentication methods, such as login by e-mail
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-SOCIAL_AUTH_JSONFIELD_ENABLED = True
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714074814037-8bnp5oqt4hktqg0fe86hqih16mr7pp0k.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+# SOCIAL_AUTH_JSONFIELD_ENABLED = True
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714074814037-8bnp5oqt4hktqg0fe86hqih16mr7pp0k.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
 
 ACCOUNT_EMAIL_VERIFICATION = True
 ACCOUNT_EMAIL_REQUIRED = True

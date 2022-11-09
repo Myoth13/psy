@@ -1,4 +1,4 @@
-{% load cms_tags menu_tags sekizai_tags static i18n %}
+{% load cms_tags menu_tags sekizai_tags static i18n socialaccount %}
 
 {% if user.is_authenticated %}
 
@@ -15,7 +15,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% translate 'Login' %}</a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
             <li class="nav-item text-center"><a class="dropdown-item" href="{% url 'account_login' %}?next={{ request.path }}">{% translate 'Password' %}</a></li>
-            <li class="nav-item text-center"><a class="dropdown-item" href="{% url "social:begin" "google-oauth2" %}">Google</a></li>
+            <li class="nav-item text-center"><a class="dropdown-item" href="{% provider_login_url 'google' %}">Google</a></li>
         </ul>
     </li>
 
