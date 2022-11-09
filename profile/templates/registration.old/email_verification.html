@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900');
+		</style>
+	</head>
+	<body style="background: #f5f8fa;font-family: 'Roboto', sans-serif;">
+		<div style="width: 90%;max-width:600px;margin: 20px auto;background: #ffffff;">
+			<div>
+				<a href=
+				"http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">
+				Please activate your account</a>
+			</div>
+		</div>
+	</body>
+</html>
