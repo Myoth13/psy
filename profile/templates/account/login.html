@@ -1,19 +1,6 @@
-{% extends "base.html" %}{% load cms_tags menu_tags sekizai_tags static i18n %}
+{% extends "base.html" %}{% load cms_tags menu_tags sekizai_tags static i18n crispy_forms_tags %}
 
 {% block content %}
-
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
 
 <section class="vh-100">
   <div class="container-fluid h-custom">
@@ -25,15 +12,13 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form method="post">
           {% csrf_token %}
-          {{ form.as_p }}
+          {{ form | crispy }}
           <button type="submit">Log In</button>
+          <div><a href="{% url 'account_reset_password' %}">Lost password?</a></div>
+          <div><a href="{% url 'account_signup' %}">Signup</a></div>
         </form>
       </div>
     </div>
-  </div>
-  <div
-    <p><a href="{% url 'account_reset_password' %}">Lost password?</a></p>
-    <p><a href="{% url 'account_signup' %}">Signup</a></p>
   </div>
 </section>
 

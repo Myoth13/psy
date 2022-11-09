@@ -29,6 +29,8 @@
             <p class="text-muted mb-1">{{profile.occupation}}</p>
             <a href="{% url 'profile_update' %}">Update</a>
             <a href="{% url 'profile_delete' %}">Delete</a>
+            <a href="{% url 'account_email' %}">Change email</a>
+            <a href="{% url 'account_change_password' %}">Change password</a>
           </div>
         </div>
       </div>
@@ -68,6 +70,7 @@
       </div>
     </div>
 
+    {% if profile.post_set.all %}
     <!-- Articles -->
     <div class ="row">
       <p>List of articles</p>
@@ -88,6 +91,7 @@
         {% endfor %}
       </div>
     </div>
+  {% endif %}
 
   </div>
 </section>
