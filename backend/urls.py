@@ -6,7 +6,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('profile/', include('django.contrib.auth.urls')),
+    path('profile/', include('allauth.urls')),
     re_path('', include('social_django.urls', namespace='social')),
     path(r'^i18n/', include('django.conf.urls.i18n')),
 ]

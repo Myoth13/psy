@@ -42,13 +42,11 @@ INSTALLED_APPS = [
 
     # key django CMS modules
     'cms',
-
     'menus',
     'treebeard',
     'sekizai',
 
     # my apps
-
     'backend',
     'cmsapp',
 
@@ -100,12 +98,17 @@ INSTALLED_APPS = [
     # auth module
     'social_django',
 
+    # 3rd party
+    'allauth',  # new
+    'allauth.account',  # new
+    'allauth.socialaccount',  # new
+
     # forms plugin
     'crispy_forms',
     "crispy_bootstrap5",
 ]
 
-#AUTH_USER_MODEL = 'profile.MyUser'
+AUTH_USER_MODEL = 'profile.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,7 +163,6 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters',
 )
-
 
 CMS_TEMPLATES = [
     ('dynamic.html', 'dynamic page'),
@@ -251,11 +253,22 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth',
     'social_core.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '714074814037-8bnp5oqt4hktqg0fe86hqih16mr7pp0k.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+ACCOUNT_EMAIL_VERIFICATION = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',

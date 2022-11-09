@@ -4,8 +4,7 @@ from .models import Post
 from .forms import PostForm
 from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
-from profile.models import UserProfile
-from django.contrib.auth.models import User, Group
+from profile.models import UserProfile, User
 
 
 # Create your views here.
@@ -32,8 +31,7 @@ def blogpost(request, slug):
 def create_post(request):
     if request.user.has_perm('post.create_post'):
         form = PostForm
-        user_id = request.user
-        user_profile = UserProfile.objects.get(user_id=user_id)
+        user_profile = User.objects.get(username=request.user)
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
@@ -52,8 +50,7 @@ def create_post(request):
 @login_required
 def update_post(request, slug):
     if request.user.has_perm('post.create_post'):
-        user_id = request.user
-        user_profile = UserProfile.objects.get(user_id=user_id)
+        user_profile = User.objects.get(username=request.user)
         post = Post.objects.get(slug=slug)
         if post.author == user_profile:
             form = PostForm(instance=post)
@@ -74,8 +71,7 @@ def update_post(request, slug):
 @login_required
 def delete_post(request, slug):
     if request.user.has_perm('post.delete_post'):
-        user_id = request.user
-        user_profile = UserProfile.objects.get(user_id=user_id)
+        user_profile = User.objects.get(username=request.user)
         post = Post.objects.get(slug=slug)
         if post.author == user_profile:
             form = PostForm(instance=post)

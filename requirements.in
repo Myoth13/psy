@@ -39,7 +39,7 @@ social-auth-app-django
 django-ckeditor
 reportlab
 svglib
-
+django-allauth
 
 easy-thumbnails
 # optional django CMS Frontend modules

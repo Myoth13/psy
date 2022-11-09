@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from ckeditor.fields import RichTextField
 from profile.models import UserProfile
 import uuid
@@ -14,7 +15,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post/img')
     slug = models.SlugField(unique=True)
     category = models.ForeignKey('PostCategory', on_delete=models.SET_NULL, blank=True, null=True)
-    author = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.title

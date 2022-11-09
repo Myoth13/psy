@@ -1,10 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.admin import admin, UserAdmin
 import uuid
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+from django.contrib.auth.models import AbstractUser
+from .managers import UserManager
+
+
+class User(AbstractUser):
+    class Meta:
+        db_table = 'auth_user'
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.email
 
 
 @receiver(post_save, sender=User)
@@ -31,10 +41,8 @@ class UserProfile(models.Model):
         return super(self.__class__, self).delete(*args, **kwargs)
 
 
-#admin.site.unregister(User)
 
 
-#@admin.register(profile.MyUser)
 '''class MyUser(AbstractUser):
     username = models.CharField(max_length=40, unique=True, db_index=True)
     email = models.EmailField(max_length=254, unique=True)
