@@ -3,104 +3,140 @@
 {% block content %}
 
 <section style="background-color: #eee;">
-  <div class="container py-5">
+    <div class="container py-5">
 
-    <div class="row">
-      <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            {% if profile.photo %}
-            <img src="{{profile.photo.url}}" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            {% endif %}
-            <h5 class="my-3">{{profile.name}}</h5>
-            <p class="text-muted mb-1">{{profile.occupation}}</p>
-            <p>
-              <a href="{% url 'profile_update' %}">Update</a>
-              <a href="{% url 'profile_delete' %}">Delete</a>
-            </p>
-            <p>
-            <a href="{% url 'account_email' %}">Change email</a>
-            <a href="{% url 'account_change_password' %}">Change password</a>
-            </p>
-            <p>
-              <a href="{% url 'socialaccount_connections' %}">Connect social</a></li>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{profile.name}}</p>
-              </div>
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">User</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                    </ol>
+                </nav>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{profile.user.email}}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">About</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{profile.about}}</p>
-              </div>
-            </div>
-          </div>
         </div>
 
-      </div>
+        <div class="row">
+
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        {% if profile.photo %}
+                            <img src="{{profile.photo.url}}" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 150px;">
+                        {% endif %}
+                        <h5 class="my-3">{{profile.name}}</h5>
+                        <p class="text-muted mb-1">{{profile.occupation}}</p>
+                        <p>
+                            <a href="{% url 'profile_update' %}">Update</a>
+                            <a href="{% url 'profile_delete' %}">Delete</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'account_email' %}">Change email</a>
+                            <a href="{% url 'account_change_password' %}">Change password</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'socialaccount_connections' %}">Connect social</a></li>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{profile.name}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{profile.user.email}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">About</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{profile.about}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if posts %}
+        <!-- Articles -->
+
+            <h2>List of my articles</h2>
+            <!--div class="list-group"-->
+
+            {% for post in posts %}
+                <div class="container">
+                    <div class ="row">
+                        <div class="col-md-3">
+                            <a href="{% url 'blogpost' post.slug %}">
+                                <img class="card-img me-3" src="{{post.image.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px"/>
+                                <h5 class="mb-1">{{post.title}}</h5>
+                                <small>{{ post.created|timesince }}</small>
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="mb-1">{{post.body|safe|truncatechars:'300'}}</p>
+                            <a href="{% url 'update_post' post.slug %}" class="">Update</a>
+                            <a href="{% url 'delete_post' post.slug %}" class="">Delete</a>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!--/div-->
+        {% endif %}
+
+        {% if programs %}
+
+            <h2>List of my programs</h2>
+            <!--div class="list-group"-->
+
+            {% for program in programs %}
+                <div class="container">
+                    <div class ="row">
+                        <div class="col-md-3">
+                            <a href="{% url 'program_desc' program.slug %}">
+                                <img class="card-img me-3" src="{{program.image.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px"/>
+                                <h5 class="mb-1">{{program.title}}</h5>
+
+
+                            </a>
+                            <p><small>{{ program.created|timesince }}</small></p>
+                            <p><small>Is active: {{ program.is_active }}</small></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="mb-1">{{program.body|safe|truncatechars:'300'}}</p>
+                            <a href="{% url 'program_manage' program.slug %}" class="">Edit</a>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!--/div-->
+        {% endif %}
+
     </div>
-
-    {% if profile.post_set.all %}
-    <!-- Articles -->
-    <div class ="row">
-      <p>List of articles</p>
-      <div class="list-group">
-        {% for post in profile.post_set.all %}
-        <a href="{% url 'blogpost' post.slug %}" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <img class="card-img me-3" src="{{post.image.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px"/>
-            <h5 class="mb-1">{{post.title}}</h5>
-            <small>{{ post.created|timesince }}</small>
-
-            <p class="mb-1">{{post.body|safe|truncatechars:'300'}}</p>
-            <a href="{% url 'update_post' post.slug %}" class="btn">Update</a>
-            <a href="{% url 'delete_post' post.slug %}" class="btn">Delete</a>
-          </div>
-          <hr/>
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
-
-  </div>
 </section>
 
 

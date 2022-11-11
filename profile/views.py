@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import UserProfile, User
+from cmsapp.models import Post
+from program.models import Program
 from .forms import UpdateUserProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -7,9 +9,12 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile_main(request, *args, **kwargs):
-    user_id = request.user
-    user_profile = UserProfile.objects.get(user_id=user_id)
-    context = {'profile': user_profile}
+    #user_id = request.user
+    #user_profile = UserProfile.objects.get(user_id=user_id)
+    user_profile = request.user.userprofile
+    posts = request.user.post_set.all
+    programs = request.user.program_set.all
+    context = {'profile': user_profile, 'posts': posts, 'programs': programs}
     return render(request, 'profile_main.html', context=context)
 
 

@@ -14,6 +14,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('', include('cmsapp.urls')),
     path('', include('profile.urls')),
+    path('', include('program.urls')),
     # keep this in the end otherwise it will rewrite index page
     path('', include('cms.urls')),
 )

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load cms_tags menu_tags sekizai_tags static i18n %}
 
 {% block content %}
             <!-- Page Content-->
@@ -6,16 +7,13 @@
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
 
-
-
                         <div class="col-lg-2">
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
                                 <div class="ms-3">
-                                    <img class="img-fluid rounded-circle" src="{{post.author.photo.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px" />
-                                    <div class="fw-bold">{{post.author.name}}</div>
-                                    {% if user.is_authenticated and request.user == post.author.user %}
-                                    <div class=""><a href="{% url 'update_post' post.slug %}"><button class="btn btn-primary">Update</button></a></div>
-                                    <div class=""><a href="{% url 'delete_post' post.slug %}"><button class="btn btn-danger">Delete</button></a></div>
+                                    <img class="img-fluid rounded-circle" src="{{program.author.userprofile.photo.url}}" alt="100x100" data-holder-rendered="true" style="height:100px; width: 100px" />
+                                    <div class="fw-bold">{{program.author.userprofile.name}}</div>
+                                    {% if user.is_authenticated and request.user == program.author %}
+                                        <div class=""><a href="{% url 'program_manage' program.slug %}">Edit</a></div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -27,17 +25,17 @@
                                 <!-- Post header-->
                                 <header class="mb-4">
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">{{post.title}}</h1>
+                                    <h1 class="fw-bolder mb-1">{{program.title}}</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">{{post.modified}}</div>
+                                    <div class="text-muted fst-italic mb-2">{{program.modified}}</div>
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{post.category}}</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{program.category}}</a>
                                 </header>
                                 <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="{{post.image.url}}" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="{{program.image.url}}" alt="..." /></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <p class="fs-5 mb-4">{{post.body|safe}}</p>
+                                    <p class="fs-5 mb-4">{{program.body|safe}}</p>
                                 </section>
                             </article>
                             <!-- Comments section-->
@@ -87,20 +85,18 @@
 
                             <!-- Side widgets -->
                             <div class="col-lg-3">
-                                <h2>Recent posts</h2>
-                                {% for post_i in posts %}
+                                <h2>Recent programs</h2>
+                                {% for prog_i in programs %}
                                     <div class="card" style="width: 18rem;">
-                                        <img src="{{post_i.image.url}}" class="card-img-top" alt="...">
+                                        <img src="{{prog_i.image.url}}" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{post_i.title}}</h5>
-                                            <p class="card-text">{{post_i.body|truncatechars:100}}</p>
-                                            <a href="{% url 'blogpost' post_i.slug %}" class="btn btn-primary">Read more</a>
+                                            <h5 class="card-title">{{prog_i.title}}</h5>
+                                            <p class="card-text">{{prog_i.body|safe|truncatechars:100}}</p>
+                                            <a href="{% url 'program_desc' prog_i.slug %}" class="btn btn-primary">Read more</a>
                                         </div>
                                     </div>
                                 {% endfor %}
                             </div>
-
-
                     </div>
                 </div>
             </section>
